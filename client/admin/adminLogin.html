@@ -1,0 +1,17 @@
+<template name="adminLogin">
+    <div class="admin-login-container">
+      <div class="content">
+        <form name="login-form">
+          {{> errors}}
+          <input id="login-username" type="text" placeholder="Username" class="form-control">
+          <input id="login-password" type="password" placeholder="Password" class="form-control">
+          <button class="btn btn-primary col-sm-12" id="login-sign-in" type="button">
+            Sign in 
+          </button>
+          <div id="login-other-options">
+            <a href="{{pathFor 'home'}}" class="pull-right">Back to home</a>
+          </div>
+        </form>     
+      </div>  
+    </div>    
+</template>

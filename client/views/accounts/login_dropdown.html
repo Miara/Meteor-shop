@@ -1,0 +1,31 @@
+<template name="dropdownMenu">
+	<div class="dropdown-menu pull-right" >
+		{{#if currentUser}}
+		<div class="col-sm-12">
+			<button  onclick="Meteor.logout();" class="btn btn-primary col-sm-12">Log out</button>
+		</div>
+		{{else}}
+		<form name="login-form">
+			{{> errors}}
+			<input id="login-username" type="text" placeholder="Username" class="form-control">
+			<input id="login-password" type="password" placeholder="Password" class="form-control">
+			{{#if isSignIn}}
+				<button class="btn btn-primary col-sm-12" id="login-sign-in" type="button">
+					Sign in	
+				</button>
+				<div id="login-other-options">
+					<a id="signup-link" class="pull-right">Create account</a>
+				</div>
+			{{else}}
+				<input id="login-password2" type="password" placeholder="Password again" class="form-control">
+				<button class="btn btn-primary col-sm-12" id="login-sign-up" type="button">
+					Sign up	
+				</button>
+				<button class="btn btn-primary col-sm-12" id="login-cancel" type="button">
+					Cancel	
+				</button>
+			{{/if}}
+		</form>
+		{{/if}}
+	</div>
+</template>
