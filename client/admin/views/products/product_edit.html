@@ -1,0 +1,38 @@
+<template name="adminProductEdit">
+	<div class="panel panel-default" style="margin: 5px;">
+		<div class="panel-body product-form">
+			{{> errors}}
+			{{#if isImageAdded}}
+			<div style="width: 200px; height:100px;">
+				<img src="/{{imagePath}}" style=" width: 200px; height:100px; position:absolute;"/>
+				<button type="button" class="close close-product-image">&times;</button>
+	
+			</div>
+			{{else}}
+				{{> upload_bootstrap contentType='images' fileTypes='.jpg' callbacks=fileUploadedCallback}}
+			{{/if}}
+	        <input id="form-product-name" type="text" placeholder="Name" class="form-control " value="{{name}}">
+	        <input id="form-product-price" type="number" placeholder="Price" class="form-control" value="{{price}}">
+			<a href="{{pathFor 'adminProductList'}}" class="btn btn-default pull-left">
+				<span class="glyphicon glyphicon-arrow-left"> </span>
+				Back to list
+			</a>
+			{{#if isEditedItem}}
+			<a href="#" class="btn btn-default pull-right product-apply-button">
+				<span class="glyphicon glyphicon-ok" style="color:green;"> </span>
+				Apply
+			</a>
+			<a href="#" class="btn btn-default pull-right product-remove-button">
+				<span class="glyphicon glyphicon-trash"> </span>
+				Delete
+			</a>
+			{{else}}
+			<a href="#" class="btn btn-default pull-right add-product-button">
+				<span class="glyphicon glyphicon-plus" style="color:green;"> </span>
+				Add
+			</a>
+			{{/if}}
+		</div>
+	</div>
+	
+</template>

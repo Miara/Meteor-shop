@@ -1,0 +1,21 @@
+<template name="adminProductItem">
+	<div class="row admin-product">
+		<div class="col-sm-3">
+			<div>
+	        	<img src="/{{path}}">
+	        </div>
+   		</div>
+   		<div class="col-sm-7">
+	        <div class="details">
+	        	<p class="name"> {{name}} </p>
+	        	<p class="price"> {{price}} zł</p>
+	        </div>
+    	</div>
+    	<div class="col-sm-2">
+    		<a href="{{pathFor 'adminProductEdit'}}" class="btn btn-default">
+    			<span class="glyphicon glyphicon-pencil"></span>
+    			Edit
+    		</a>
+    	</div>
+	</div>
+</template>

@@ -10,7 +10,7 @@ Template.adminLogin.events({
             }
         });
         Meteor.setTimeout(function(){ 
-                Router.go('admin'); 
+                Router.go('adminProductList'); 
             console.log('test');}, 1000
         ); 
          

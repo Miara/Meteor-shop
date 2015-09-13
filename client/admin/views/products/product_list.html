@@ -1,0 +1,13 @@
+<template name="adminProductList">
+	<div class="row add-product">
+		<div class="col-sm-12">
+			<a href="{{pathFor 'adminProductNew'}}" class="btn btn-default pull-right">
+				<span class="glyphicon glyphicon-plus" style="color:green;"> </span>
+				Add product
+			</a>
+		</div>
+	</div>
+	{{#each products}}
+		{{> adminProductItem}}
+	{{/each}}
+</template>

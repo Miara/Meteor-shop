@@ -1,0 +1,23 @@
+.admin-product{
+	margin: 10px;
+	border-bottom: gray 1px solid;
+}
+
+.add-product{
+	border-bottom: gray 1px solid;
+	padding: 10px;
+}
+
+.add-product div{
+	
+}
+
+.admin-product img{
+	width: 100px;
+	height: 100px;
+}
+
+.product-form input, .product-form .upload-file, .product-form a{
+	margin: 5px 0 5px;
+}
+

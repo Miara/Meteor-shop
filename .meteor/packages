@@ -10,3 +10,5 @@ sacha:spin
 twbs:bootstrap
 accounts-ui
 accounts-password
+tomi:upload-server
+tomi:upload-jquery

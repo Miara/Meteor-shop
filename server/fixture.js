@@ -1,18 +1,40 @@
 if(Products.find().count() === 0){
 
-	var kat1 = Categories.insert({
+	var nike_kobiety = Categories.insert({
+		name: "Nike",
+		subCategories: [],
+
+	});
+
+
+	var nike_mezczyzni = Categories.insert({
+			name: "Nike",
+			subCategories: [],
+
+		});
+
+	var adidas_mezczyzni = Categories.insert({
+			name: "Adidas",
+			subCategories: [],
+
+		});
+
+	var kobiety = Categories.insert({
 		name: "Kobiety",
-		subCategories: [],
+		subCategories: [nike_kobiety],
 		mainCategory: true
 
 	});
 
-	var kat2 = Categories.insert({
+	var mezczyzni = Categories.insert({
 		name: "Mężczyźni",
-		subCategories: [],
+		subCategories: [nike_mezczyzni,adidas_mezczyzni],
 		mainCategory: true
 
 	});
+
+	
+
 
 	Accounts.createUser({
             username: 'admin',
@@ -35,36 +57,36 @@ if(Products.find().count() === 0){
 
 	Products.insert({
 		name: 'Nike Long',
-		path: 'nike_long.jpg',
+		path: 'images/nike_long.jpg',
 		price: 150,
-		category: kat2
+		categories: [mezczyzni,nike_mezczyzni]
 	});
 
 	Products.insert({
 		name: 'Adidas Black Green',
-		path: 'adidas_black_green.jpg',
+		path: 'images/adidas_black_green.jpg',
 		price: 220,
-		category: kat2
+		categories: [mezczyzni,adidas_mezczyzni]
 	});
 
 	Products.insert({
 		name: 'Adidas_white',
-		path: 'adidas_white.jpg',
+		path: 'images/adidas_white.jpg',
 		price: 190,
-		category: kat2
+		categories: [mezczyzni,adidas_mezczyzni]
 	});
 
 	Products.insert({
 		name: 'Nike Lemon',
-		path: 'nike_lemon.jpg',
+		path: 'images/nike_lemon.jpg',
 		price: 200,
-		category: kat2
+		categories: [mezczyzni,nike_mezczyzni]
 	});
 
 	Products.insert({
 		name: 'Nike Red',
-		path: 'nike_red.jpg',
+		path: 'images/nike_red.jpg',
 		price: 200,
-		category: kat1
+		categories: [kobiety,nike_kobiety]
 	});
 }
