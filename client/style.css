@@ -28,7 +28,7 @@ body {
 } 
 
 #main{
-    min-height: 100%;
+    min-height: 500px;
     background-color: #fff;
     border-radius: 3px;
 }
@@ -136,3 +136,8 @@ right: 10px;
 .alert-danger button{
   margin: 0px;
 }
+
+.sidebar ul{
+   list-style-type: none;
+}
+

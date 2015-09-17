@@ -4,6 +4,10 @@ throwError = function(message) {
   Errors.insert({message: message, seen: false})
 }
 
+clearAllErrors = function(){
+	Errors.remove({});
+}
+
 clearErrors = function() {
   Errors.remove({seen: true});
 }

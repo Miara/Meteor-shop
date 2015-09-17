@@ -2,17 +2,60 @@
 	<div class="panel panel-default" style="margin: 5px;">
 		<div class="panel-body product-form">
 			{{> errors}}
+			<div class="row image">
+                <div class="col-sm-4 vcenter">
+                	<label class="pull-right">Image:</label>
+                </div>
+                <div class="col-sm-8 vcenter">
 			{{#if isImageAdded}}
-			<div style="width: 200px; height:100px;">
-				<img src="/{{imagePath}}" style=" width: 200px; height:100px; position:absolute;"/>
-				<button type="button" class="close close-product-image">&times;</button>
-	
-			</div>
+					<div style="width: 200px; height:100px;">
+						<img src="/{{imagePath}}" style=" width: 200px; height:100px; position:absolute;"/>
+						<button type="button" class="close close-product-image">&times;</button>
+					</div>
 			{{else}}
-				{{> upload_bootstrap contentType='images' fileTypes='.jpg' callbacks=fileUploadedCallback}}
+					{{> upload_bootstrap contentType='images' fileTypes='.jpg' callbacks=fileUploadedCallback}}
 			{{/if}}
-	        <input id="form-product-name" type="text" placeholder="Name" class="form-control " value="{{name}}">
-	        <input id="form-product-price" type="number" placeholder="Price" class="form-control" value="{{price}}">
+				</div>
+			</div>
+
+			<div class="row">
+                <div class="col-sm-4">
+                    <label class="pull-right">Name:</label>
+                </div>
+                <div class="col-sm-8">
+                    <input id="form-product-name" type="text" placeholder="Name" class="form-control form-control-inline" value="{{name}}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="pull-right">Price:</label>
+                </div>
+                <div class="col-sm-8">
+                    <input id="form-product-price" type="number" placeholder="Price" class="form-control form-control-inline" value="{{price}}">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="pull-right">Category:</label>
+                </div>
+                <div class="col-sm-8">
+                    <p class="dropdown">
+				        <a  class="dropdown-toggle" data-toggle="dropdown">
+				        	{{#with currentCategory}}
+				        		{{name}}
+				        	{{/with}}
+				            <span class="caret"></span>
+				        </a>
+				        <div class="dropdown-menu">
+				        	{{> categoriesSidebar redirect=false level=0}}
+				        </div>
+				    </p>
+                </div>
+            </div>
+	        
+	        <br>
 			<a href="{{pathFor 'adminProductList'}}" class="btn btn-default pull-left">
 				<span class="glyphicon glyphicon-arrow-left"> </span>
 				Back to list

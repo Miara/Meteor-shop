@@ -1,8 +1,26 @@
 <template name="categoriesSidebar">
 	<ul>
-		<li>Here</li>
-		<li>Will</li>
-		<li>Be</li>
-		<li>Categories</li>
+		{{#each mainCategories}}
+			<li>
+				{{> categoriesSidebarItem redirect=../redirect data=this }}
+			</li>
+		{{/each}}
 	</ul>
+</template>
+
+<template name="categoriesSidebarItem">
+	<a href="#">
+		<span class="glyphicon glyphicon-chevron-right" 
+			style="font-size: 0.9em;"></span>
+		{{data.name}}
+	</a>
+	{{#if data.subCategories.length}}
+		<ul>
+			{{#each subCats }}
+			 	<li>
+			 		{{> categoriesSidebarItem redirect=../redirect data=this }}
+			 	</li>
+			 {{/each}}
+		</ul>
+	{{/if}}
 </template>

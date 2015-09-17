@@ -17,7 +17,36 @@
 	height: 100px;
 }
 
-.product-form input, .product-form .upload-file, .product-form a{
+.product-form input,.product-form .upload-file, .product-form a{
 	margin: 5px 0 5px;
+}
+.product-form label, .product-form p.dropdown{
+	margin-top: 10px;
+}
+.product-form .image{
+	margin-bottom: 15px;
+}
+
+.form-control-inline {
+    min-width: 0;
+    width: auto;
+    display: inline;
+}
+
+.category-panel{
+	margin-right: 15px;
+}
+
+.categories-form .row label, .categories-form .root-name{
+	margin-top: 5px;
+}
+
+.categories-form .cat-3-level{
+	margin-top: 5px;
+	color: red;
+}
+
+.vcenter{
+    vertical-align: middle;
 }
 
