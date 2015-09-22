@@ -42,27 +42,54 @@ if(Products.find().count() === 0){
 		categoryLevel: 0
 
 	});
-	
 
 
-	Accounts.createUser({
+
+	var orderId = Orders.insert({
+      sum: 0
+    });
+	var userId = Accounts.createUser({
             username: 'admin',
             email: 'admin@shop.com',
             password: 'admin',
             profile : {
-            	isAdmin: true
+            	isAdmin: true,
+            	order: orderId
         	}
         });
 
-	Accounts.createUser({
+	Orders.update(orderId,{$set: {"userId": userId}});
+
+
+	orderId = Orders.insert({
+      sum: 0
+    });
+	userId = Accounts.createUser({
             username: 'miara',
             email: 'miara@shop.com',
             password: 'miara',
             profile : {
-            	isAdmin: false
+            	isAdmin: false,
+            	order: orderId
         	}
         });
+	Orders.update(orderId,{$set: {"userId": userId}});
 
+
+
+	orderId = Orders.insert({
+      sum: 0
+    });
+	userId = Accounts.createUser({
+            username: 'olga',
+            email: 'olga@shop.com',
+            password: 'olga',
+            profile : {
+            	isAdmin: false,
+            	order: orderId
+        	}
+        });
+	Orders.update(orderId,{$set: {"userId": userId}});
 
 	Products.insert({
 		name: 'Nike Long',

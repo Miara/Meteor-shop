@@ -1,0 +1,14 @@
+<template name="cartHeader">
+	<a href="{{pathFor 'cart'}}">
+            <span class="glyphicon glyphicon-shopping-cart"></span>
+            Cart
+            {{#if productCount}}
+		      <span class="badge badge-inverse">{{productCount}}</span>
+		    {{/if}}
+    </a>
+</template>
+
+
+<template name="cartHeaderItem">
+
+</template>

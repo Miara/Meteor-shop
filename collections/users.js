@@ -14,12 +14,20 @@ Meteor.methods({
     if (password != password2)
       throw new Meteor.Error(422, 'Passwords are not the same');
 
+    var orderId = Orders.insert({
+      products: [],
+      sum: 0
+    });
+
     var id = Accounts.createUser({
       username: username, 
       password: password,
       profile: {
-        isAdmin: false
+        isAdmin: false,
+        order: orderId
       }});
+
+    Orders.update(orderId,{$set: {"userId": id}});
 
     return id;
   }

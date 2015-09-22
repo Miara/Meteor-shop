@@ -1,0 +1,30 @@
+<template name="productItem">
+	<div class="row">
+    <div class="col-sm-3 sidebar" >
+    	{{> categoriesSidebar redirect=true level=1}}
+    </div>
+    <div class="col-sm-9" >
+    	<div class="container-fluid product-item">
+			<div class="row">
+				<p class="name">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					{{name}}
+				</p>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<img src="/{{itemPath}}">
+				</div>
+				<div class="col-sm-6 description">
+					<a class="btn btn-primary pull-right add-to-cart" href="#">
+		        		<span class="glyphicon glyphicon-shopping-cart"></span>
+		        		Add to cart
+		        	</a>
+					<p><label>Price:</label> {{price}}zł</p>
+					<p><label>Availability:</label> unlimited</p>
+				</div>
+			</div>
+		</div>
+    </div>
+    </div>
+</template>

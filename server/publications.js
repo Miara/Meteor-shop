@@ -6,6 +6,14 @@ Meteor.publish('categories',function(){
 	return Categories.find({});
 });
 
+Meteor.publish('orders',function(){
+  return Orders.find({});
+});
+
+Meteor.publish('orderPositions',function(){
+  return OrderPositions.find({});
+});
+
 Meteor.publish('userData', function() {
   if(!this.userId) return null;
   return Meteor.users.find(this.userId, {fields: {
