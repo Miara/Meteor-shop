@@ -3,13 +3,9 @@
 	border-bottom: gray 1px solid;
 }
 
-.add-product{
+.row.add-item{
 	border-bottom: gray 1px solid;
 	padding: 10px;
-}
-
-.add-product div{
-	
 }
 
 .admin-product img{
@@ -49,4 +45,18 @@
 .vcenter{
     vertical-align: middle;
 }
+
+
+.attribute-form:not(:first-child) label{
+	margin-top: 10px;
+}
+
+.attr-value{
+	width: 200px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	
+}
+
 

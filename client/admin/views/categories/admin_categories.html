@@ -59,6 +59,28 @@
                 {{/if}}
             </div>
         </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <label class="pull-right"> Attributes: </label>
+            </div>
+            <div class="col-sm-8">
+                 <select id="attribute" class="form-control form-control-inline">
+                    {{#each unselectedAttributes}}
+                        <option value="{{_id}}">{{name}}</option>
+                    {{/each}}
+                </select>
+
+                <a href="#" class="btn btn-default add-attribute-button">
+                        <span class="glyphicon glyphicon-plus" style="color:green;"> </span>
+                </a>
+                {{#each selectedAttributes}}
+                    <p>{{> adminCategoryAttribute attr=this catId=../_id}}</p>
+                {{/each}}
+            </div>
+        </div>
+
+
         <br>
         {{#if categoryLevel}}
             <a href="#" class="btn btn-default pull-right category-apply-button">
@@ -72,4 +94,11 @@
         {{/if}}
         </div>
     </div>
+</template>
+
+<template name="adminCategoryAttribute">
+    <p class="attr-value">
+        <button type="button" class="close">&times;</button>
+        {{attr.name}}
+    </p>
 </template>

@@ -18,3 +18,9 @@ Template.error.rendered = function() {
     Errors.update(error._id, {$set: {seen: true}});
   });
 };
+
+Template.errors.helpers({
+  errors: function() {
+    return Errors.find();
+  }
+});

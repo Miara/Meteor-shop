@@ -16,6 +16,24 @@ Template.adminCategories.onCreated(function(){
 Template.adminCategoriesItem.helpers({
 	subCats : function(){
 		return Categories.find({_id:{$in: this.subCategories}});
+	},
+	selectedAttributes: function(){
+		return Attributes.find({ 
+			$and: 
+			[
+				{_id:{$in: this.attributes}},
+				{ "adding" : { "$exists" : false } }
+			]
+		});
+	},
+	unselectedAttributes: function(){
+		return Attributes.find({ 
+			$and: 
+			[
+				{_id:{$not: {$in: this.attributes}}},
+				{ "adding" : { "$exists" : false } }
+			]
+		});
 	}
 });
 
@@ -38,6 +56,11 @@ Template.adminCategoriesItem.events({
 	    $('#subcategory-name').val("");
 
 	},
+	"click .add-attribute-button": function(event){
+		var attr = $('#attribute').val();
+		Categories.update({ _id: this._id },{ $push: { attributes: attr }});
+		//TODO :DLA WSZYSTKICH KATEGORII PDORZĘDNYCH TEŻ
+	},
 	"click .category-apply-button" : function(event){
 		event.preventDefault();
 
@@ -57,5 +80,16 @@ Template.adminCategoriesItem.events({
 		var parent = Categories.findOne({subCategories : {$in :[this._id]}});
 		Categories.remove(this._id);
 		categoryId.set(parent._id);
+	}
+
+
+});
+
+Template.adminCategoryAttribute.events({
+	'click .close': function(event){
+		console.log(this.catId);
+		console.log(this.attr);
+		Categories.update({_id: this.catId},{$pull: {attributes: this.attr._id}});
+		//TODO : DLA WSZYSTKICH KATEGORII PDORZĘDNYCH TEŻ
 	}
 });
