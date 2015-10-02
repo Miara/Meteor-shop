@@ -14,3 +14,10 @@ Template.productItem.events({
 		addToCart(this);
 	}
 });
+
+Template.productItemAttribute.helpers({
+  getAttributeName: function(){
+    var attribute = Attributes.findOne({_id: this.id});
+    return attribute.name;
+  }
+});

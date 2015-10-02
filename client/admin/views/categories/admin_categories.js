@@ -87,8 +87,6 @@ Template.adminCategoriesItem.events({
 
 Template.adminCategoryAttribute.events({
 	'click .close': function(event){
-		console.log(this.catId);
-		console.log(this.attr);
 		Categories.update({_id: this.catId},{$pull: {attributes: this.attr._id}});
 		//TODO : DLA WSZYSTKICH KATEGORII PDORZĘDNYCH TEŻ
 	}

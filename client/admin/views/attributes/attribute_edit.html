@@ -1,5 +1,8 @@
 <template name="adminAttributeEdit">
 	<div class="panel panel-default" style="margin: 5px;">
+    <div class="panel-heading">
+        <h4> Attribute: {{name}} (#{{_id}}) </h4>
+    </div>
 	<div class="panel-body attribute-form">
 		{{> errors}}
 
@@ -63,6 +66,8 @@
                 <input id="form-attribute-unit" type="text" placeholder="Unit" class="form-control form-control-inline" value="{{unit}}">
             </div>
         </div>
+        {{/if}}
+        {{#if isTypeOf 'numeric' 'text'}}
 
         
 

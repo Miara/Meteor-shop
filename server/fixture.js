@@ -139,9 +139,8 @@ if(Products.find().count() === 0){
 		categories: [root_category,mezczyzni,nike_mezczyzni],
 		attributes: 
 		[{
-			name : "weight",
+			id: attr_weight,
 			value: 8,
-			unit: "kg" 
 		}]
 	});
 
@@ -152,9 +151,8 @@ if(Products.find().count() === 0){
 		categories: [root_category,mezczyzni,adidas_mezczyzni],
 		attributes: 
 		[{
-			name : "weight",
-			value: 8,
-			unit: "kg" 
+			id: attr_weight,
+			value: 8
 		}]
 	});
 
@@ -165,9 +163,8 @@ if(Products.find().count() === 0){
 		categories: [root_category,mezczyzni,adidas_mezczyzni],
 		attributes: 
 		[{
-			name : "weight",
-			value: 5,
-			unit: "kg" 
+			id: attr_weight,
+			value: 5
 		}]
 	});
 
@@ -178,9 +175,8 @@ if(Products.find().count() === 0){
 		categories: [root_category,mezczyzni,nike_mezczyzni],
 		attributes: 
 		[{
-			name : "weight",
-			value: 6,
-			unit: "kg" 
+			id: attr_weight,
+			value: 6
 		}]
 	});
 
@@ -191,9 +187,8 @@ if(Products.find().count() === 0){
 		categories: [root_category,kobiety,nike_kobiety],
 		attributes: 
 		[{
-			name : "weight",
-			value: 3,
-			unit: "kg" 
+			id: attr_weight,
+			value: 3
 		}]
 	});
 
@@ -205,12 +200,11 @@ if(Products.find().count() === 0){
 		categories: [root_category,mezczyzni,everlast_mezczyzni],
 		attributes: 
 		[{
-			name : "weight",
-			value: 6,
-			unit: "kg" 
+			id: attr_weight,
+			value: 6
 		},
 		{
-			name : "dimension",
+			id: attr_dim,
 			value: "20cm x 120cm x 40cm"
 		}]
 	});

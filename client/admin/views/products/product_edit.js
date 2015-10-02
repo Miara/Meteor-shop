@@ -61,6 +61,31 @@ Template.adminProductEdit.helpers({
           return choosen;
       }
       
+    },
+    selectedAttributes: function(){
+      //TODO refaktoryzacja
+      var attributes = [];
+      for(var i=0; i< this.attributes.length ; i++){
+          var attr = Attributes.findOne({_id: this.attributes[i].id});
+          attr.value = this.attributes[i].value;
+          attributes.push(attr);
+      }
+      return attributes;
+    },
+    unselectedAttributes: function(){
+      var idArr = [];
+      for(var i=0; i< this.attributes.length ; i++){
+          idArr.push(this.attributes[i].id);
+      }
+      var cat = Categories.findOne(categoryId.get());
+      return Attributes.find({ 
+        $and: 
+        [
+          {_id:{$not: {$in: idArr}}},
+          {_id: {$in: cat.attributes}},
+          { "adding" : { "$exists" : false } }
+        ]
+      });
     }
 });
 
@@ -73,12 +98,14 @@ Template.adminProductEdit.events({
     event.preventDefault();
 
     var productCategories = getProductCategories();
+    var productAttributes = getproductAttributes(this.attributes);
     if(validate()){
       Products.insert({
         name: $('#form-product-name').val(),
         path:  Session.get("imagePath"),
         price: $("#form-product-price").val(),
-        categories: productCategories 
+        categories: productCategories ,
+        attributes: productAttributes
       });
       Router.go("adminProductList");
     }else{
@@ -89,13 +116,15 @@ Template.adminProductEdit.events({
   "click .product-apply-button": function(event){
     event.preventDefault();
     var productCategories = getProductCategories();
+    var productAttributes = getproductAttributes(this.attributes);
     if(validate()){
       Products.update(this._id, {
           $set: {
             name:  $('#form-product-name').val(),
             path:  Session.get("imagePath"),
             price: $("#form-product-price").val(),
-            categories: productCategories 
+            categories: productCategories ,
+            attributes: productAttributes
           }
         });
     }
@@ -108,8 +137,41 @@ Template.adminProductEdit.events({
     Products.remove(this._id);
     Router.go("adminProductList");
     return false;
+  },
+  "click .add-attribute-button": function(event){
+    var attrId = $('#attribute').val();
+    var data = {id: attrId, value: ""}
+    Products.update({ _id: this._id },{ $push: { attributes: data }});
+    //TODO :DLA WSZYSTKICH KATEGORII PDORZĘDNYCH TEŻ
   }
 });
+
+Template.adminProductAttribute.helpers({
+  isTypeOf :  function(value){
+      return this.type == value;
+  },
+  isChecked: function(){
+    var attribute = Template.parentData();
+    if(attribute.type == 'single'){
+      if(attribute.value == this.valueOf())
+        return true;
+    }else if(attribute.type == 'multi'){
+      if(attribute.value.indexOf(this.valueOf()) > -1)
+        return true;
+    }
+    return false;  
+  }
+});
+
+Template.adminProductAttribute.events({
+  "click .remove-attribute-button" : function(){
+    console.log("test");
+    Products.update({_id : this.prodId},{
+      $pull: {attributes: {  id: this.attr._id} }})
+  }
+});
+
+
 
 var validate = function(){
   clearAllErrors();
@@ -141,4 +203,33 @@ var getProductCategories = function(){
     return array;
 
 
+}
+
+var getproductAttributes = function(attributes){
+  var result = [];
+  for(var i=0; i<attributes.length ; i++){
+    var attr = Attributes.findOne({_id : attributes[i].id});
+    if(attr.type == 'multi'){
+      var fields = $('input[name='+attr._id+']:checked');
+      var values = [];
+      for(var i=0; fields[i] ; i++){
+        values.push(fields[i].value);
+      }
+      result.push({
+        id: attr._id,
+        value: values
+      });
+    }else{
+      if(attr.type == 'single')
+        var val = $('input[name='+attr._id+']:checked').val();
+      else
+        var val = $('input[name='+attr._id+']').val();
+      result.push({
+        id: attr._id,
+        value: val
+      });
+    }
+  }
+  console.log(result);
+  return result;
 }

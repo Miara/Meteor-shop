@@ -13,7 +13,7 @@ Template.adminAttributeEdit.helpers({
 		return this.type == value;
   	},
   	isTypeOf: function(){
-  		var args = Array.prototype.slice.call(arguments, 0);
+		var args = Array.prototype.slice.call(arguments, 0);
 	    args.pop();
 	    var type = typeSelected.get();
 	    if(!type)
@@ -24,7 +24,7 @@ Template.adminAttributeEdit.helpers({
 	    });
 
 	    return result;
-  	}
+	}
 });
 
 Template.adminAttributeEdit.events({
@@ -43,6 +43,7 @@ Template.adminAttributeEdit.events({
 	    	data = getAttributeData();
 	    	console.log(data);
 		    Attributes.insert(data);
+		    Attributes.update({_id : this._id},{$set: {values: []}});
 		    Router.go("adminAttributeList");
 	    }else{
 	      return false;
@@ -115,7 +116,8 @@ var getAttributeData = function(){
 	}else if(type == 'text'){
 		data.values = [];
 	}else if(type == 'single' ||  type == 'multi'){
-
+		var current = Attributes.findOne({adding: true});
+		data.values = current.values
 	}
 
 	return data;

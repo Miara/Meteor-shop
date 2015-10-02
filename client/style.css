@@ -112,7 +112,11 @@ body {
   background-color: #f8f8f8;
   border-color: #e7e7e7;
   border-left: 1px;
-  height: 200px;
+  min-height: 200px;
+}
+
+.product-item .description .general{
+  border-bottom: 1px black solid;
 }
 
 .product-item img{

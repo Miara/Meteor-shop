@@ -20,11 +20,20 @@
 		        		<span class="glyphicon glyphicon-shopping-cart"></span>
 		        		Add to cart
 		        	</a>
-					<p><label>Price:</label> {{price}}zł</p>
-					<p><label>Availability:</label> unlimited</p>
+		        	<div class="general">
+						<p><label>Price:</label> {{price}}zł</p>
+						<p><label>Availability:</label> unlimited</p>
+					</div>
+					{{#each attributes}}
+						{{> productItemAttribute}}
+					{{/each}}
 				</div>
 			</div>
 		</div>
     </div>
     </div>
+</template>
+
+<template name="productItemAttribute">
+	<p><label>{{getAttributeName}}:</label> {{value}}</p>
 </template>
