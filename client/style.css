@@ -197,7 +197,7 @@ right: 10px;
   margin-right: 10px;
 }
 
-.filters .price-filter input{
+.filters .price-filter input, .cart input.amount{
   min-width: 0;
   width: 50px;
   height: 25px;
@@ -212,10 +212,20 @@ right: 10px;
   font-size: 11px;
   padding: 1px 4px 1px 4px;
 }
-.filters .filter-buttons a{
+.filters .filter-buttons a,.cart a.recount{
   height: 25px;
   font-size: 11px;
 }
+.cart input.amount{
+  width:30px;
+  text-align:center;
+
+}
+.cart a.recount{
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

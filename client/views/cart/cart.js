@@ -16,5 +16,9 @@ Template.cartItem.events({
 		event.preventDefault();
 		Router.go('productItem',{_id : this.product});
 		return false;
+	},
+	'click .recount': function(event){
+		var value = $('input[name='+this._id+']').val();
+		OrderPositions.update({_id: this._id},{$set: {amount: value}});
 	}
 });

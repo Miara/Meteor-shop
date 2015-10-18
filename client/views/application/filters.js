@@ -1,7 +1,4 @@
 Template.filters.events({
-	'click .filter-buttons .advanced' : function(){
-
-	},
 	'click .filter-buttons .apply' : function(){
 		var sortValue = $("select[name='sort']").val();
 		sortCriteria = {};

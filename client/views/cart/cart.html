@@ -50,7 +50,14 @@
 		<td>{{index}}.</td>
 		<td><a class="product-link" href="#">{{name}}</a></td>
 		<td>{{price}}</td>
-		<td>{{amount}}</td>
+		<td>
+			<div class="form-inline">
+				<input name="{{_id}}" type="number" class="form-control amount" value="{{amount}}" />
+				<a class="btn btn-primary recount" >
+					Recount
+				</a>
+			</div>
+		</td>
 		<td>
 			<a class="btn btn-default remove-item" href="#">
 				<span class="glyphicon glyphicon-trash"></span>
