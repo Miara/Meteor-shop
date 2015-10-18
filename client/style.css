@@ -182,3 +182,43 @@ right: 10px;
   overflow: auto;
 }
 
+.searchBar {
+  margin-right: 10px;
+}
+
+.filters{
+  margin-top: 10px;
+}
+
+.filters .price-filter,.filters .sort-filter, 
+.filters .filter-buttons{
+  font-size: 11px;
+  margin-left: 5px;
+  margin-right: 10px;
+}
+
+.filters .price-filter input{
+  min-width: 0;
+  width: 50px;
+  height: 25px;
+  font-size: 11px;
+  padding-left: 4px;
+  padding-right: 4px;
+
+}
+
+.filters .sort-filter select{
+  height: 25px;
+  font-size: 11px;
+  padding: 1px 4px 1px 4px;
+}
+.filters .filter-buttons a{
+  height: 25px;
+  font-size: 11px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}

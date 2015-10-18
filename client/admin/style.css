@@ -23,7 +23,7 @@
 	margin-bottom: 15px;
 }
 
-.form-control-inline {
+.form-control-inline , .form-control.inline {
     min-width: 0;
     width: auto;
     display: inline;
