@@ -1,23 +1,32 @@
 Orders = new Meteor.Collection('orders');
 
 Orders.allow({
-  update: function(){ return true;}
+	insert: function(){ return true;},
+  	update: function(){ return true;}
 });
 
 getOrder = function(){
-	return Orders.findOne(getOrderId());
+	if(Meteor.userId()){
+		return Orders.findOne({ 
+			userId: Meteor.userId(),
+			confirmed: false
+		});
+	}else{
+		return null;
+	}
 }
 
 getOrderId = function(){
-	if(Meteor.userId()){
-		return Meteor.user().profile.order;
+	var order = getOrder();
+	if(!isEmpty(order)){
+		return order._id;
 	}else{
 		return null;
 	}
 }
 
 getOrderPositions = function(){
-	return OrderPositions.find({order: getOrderId._id}).map(function(pos,index){
+	return OrderPositions.find({order: getOrderId()}).map(function(pos,index){
 			pos.index = index + 1;
 			return pos;
 		});
@@ -33,10 +42,10 @@ getOrderSum = function(){
 }
 
 addToCart = function(product){
-	var order = getOrderId();
-	if(order){
+	var orderId = getOrderId();
+	if(orderId){
 		var position = OrderPositions.findOne({
-			order: order._id, 
+			order: orderId, 
 			product: product._id
 		});
 		if(position){
@@ -45,7 +54,7 @@ addToCart = function(product){
 			);
 		}else{
 			OrderPositions.insert({
-				order: order._id,
+				order: orderId,
 				product: product._id,
 				name: product.name,
 				price: product.price,
@@ -53,6 +62,8 @@ addToCart = function(product){
 				amount: 1
 			});
 		}
+	}else{
+		console.log("orderId is empty");
 	}
 }
 

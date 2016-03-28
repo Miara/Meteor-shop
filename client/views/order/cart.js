@@ -24,8 +24,8 @@ Template.cart.events({
 					'payment': payment,
 					'delivery': delivery
 				}
-			});
-		Router.go('orderSummary');
+		});
+		Router.go('orderSummary',{});
 	}
 });
 

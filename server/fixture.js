@@ -92,7 +92,8 @@ if(Products.find().count() === 0){
 	    surname: 'Miarczyński',
 	    city: 'Poznan',
 	    address: 'Sobieskiego 7',
-	    postcode: '60-688'
+	    postcode: '60-688',
+	    confirmed: false
     });
 	var userId = Accounts.createUser({
             username: 'admin',
@@ -100,7 +101,6 @@ if(Products.find().count() === 0){
             password: 'admin',
             profile : {
             	isAdmin: true,
-            	order: orderId,
             	name: 'Wojciech',
 	            surname: 'Miarczyński',
 	            city: 'Poznan',
@@ -111,6 +111,8 @@ if(Products.find().count() === 0){
 
 	Orders.update(orderId,{$set: {"userId": userId}});
 
+	console.log("ORDER ID: "+ orderId);
+
 
 	orderId = Orders.insert({
       	sum: 0,
@@ -118,7 +120,8 @@ if(Products.find().count() === 0){
 	    surname: 'Miarczyński',
 	    city: 'Poznan',
 	    address: 'Sobieskiego 7',
-	    postcode: '60-688'
+	    postcode: '60-688',
+	    confirmed: false
     });
 	userId = Accounts.createUser({
             username: 'miara',
@@ -126,7 +129,6 @@ if(Products.find().count() === 0){
             password: 'miara',
             profile : {
             	isAdmin: false,
-            	order: orderId,
 	            name: 'Wojciech',
 	            surname: 'Miarczyński',
 	            city: 'Poznan',
@@ -144,7 +146,8 @@ if(Products.find().count() === 0){
         surname: 'Sreberska',
         city: 'Poznan',
         address: 'Czesława 6',
-        postcode: '61-653'
+        postcode: '61-653',
+	    confirmed: false
     });
 	userId = Accounts.createUser({
             username: 'olga',
@@ -152,7 +155,6 @@ if(Products.find().count() === 0){
             password: 'olga',
             profile : {
             	isAdmin: false,
-            	order: orderId,
 	            name: 'Olga',
 	            surname: 'Sreberska',
 	            city: 'Poznan',

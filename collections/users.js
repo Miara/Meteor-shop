@@ -31,10 +31,7 @@ Meteor.methods({
 
    
 
-    var orderId = Orders.insert({
-      products: [],
-      sum: 0
-    });
+
 
     var id = Accounts.createUser({
       username: username, 
@@ -49,7 +46,12 @@ Meteor.methods({
         postcode: data.postcode
       }});
 
-    Orders.update(orderId,{$set: {"userId": id}});
+    var orderId = Orders.insert({
+      products: [],
+      sum: 0,
+      userId: id,
+      confirmed: false
+    });
 
     return id;
   },
