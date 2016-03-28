@@ -1,0 +1,92 @@
+<template name="orderSummary">
+<div class="row">
+    <div class="col-sm-3 sidebar" >
+    	{{> categoriesSidebar redirect=true level=1}}
+    </div>
+    <div class="col-sm-9" >
+    	<div class="container-fluid summary">
+    		<div class="row">
+				<p class="header">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					Order summary
+				</p>
+			</div>
+
+			<div class="row summary-section">
+			<p>
+				Order content:
+			</p>
+			</div>
+
+			<div class="row table-container">
+				<table class="table table-responsive table-striped">
+					<thead>
+						<tr>
+							<th>Lp.</th>
+							<th>Name</th>
+							<th>Amount</th>
+							<th>Total price</th>	
+						</tr>
+					</thead>
+					<tbody>
+						{{#each positions}}
+							{{>cartSummaryItem}}
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row">
+				<p class="pull-right order-sum">SUM:<span>{{sum}}</span>zł</p>
+			</div>
+			
+			<div class="row summary-section">
+				<p>
+					Personal data:
+				</p>
+				{{#with currentUser}}
+				<p>
+					Name :    {{profile.name}} <br>
+					Surname:  {{profile.surname}}<br>
+					City: 	  {{profile.city}}<br>
+					Address:  {{profile.address}}<br>
+					Postcode: {{profile.postcode}}
+				</p>
+				{{/with}}
+			</div>
+
+			
+
+			<div class="row summary-section">
+				<p>
+					Other:
+				</p>
+				<p>
+					Delivery method: {{delivery.name}}<br>
+					Payment method:  {{payment.name}}
+				</p>
+			</div>
+
+			<div class="row pull-down buttons">
+				<a href="{{pathFor 'cart'}}" class="btn btn-default">
+					Back to cart
+				</a>
+				<a class="btn btn-primary pull-right confirm">
+					Confirm order
+				</a>
+			</div>
+
+
+		</div>
+	</div>
+</div>		
+</template>
+
+<template name="cartSummaryItem">
+	<tr>
+		<td>{{index}}.</td>
+		<td><a class="product-link" href="#">{{name}}</a></td>
+		<td>{{amount}}</td>
+		<td>{{totalPrice}}zł</td>
+	</tr>
+</template>

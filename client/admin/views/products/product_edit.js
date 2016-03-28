@@ -6,8 +6,8 @@ Template.adminProductEdit.helpers({
     isImageAdded : function(){
       
       if(this._id === undefined){
-        Session.set("imagePath","images/test.jpg");
-        return true;
+        //Session.set("imagePath","images/test.jpg");
+        //return true;
           if(Session.get("imagePath") === undefined ||
             Session.get("imagePath") === ""  ){
           return false;

@@ -13,10 +13,10 @@
 	height: 50px;
 }
 
-.product-form input,.product-form .upload-file, .product-form a{
+.product-form .upload-file, .product-form a{
 	margin: 5px 0 5px;
 }
-.product-form label, .product-form p.dropdown{
+.product-form p.dropdown{
 	margin-top: 10px;
 }
 .product-form .image{

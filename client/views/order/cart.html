@@ -1,0 +1,108 @@
+<template name="cart">
+{{#if currentUser}}
+<div class="row">
+    <div class="col-sm-3 sidebar" >
+    	{{> categoriesSidebar redirect=true level=1}}
+    </div>
+    <div class="col-sm-9" >
+    	<div class="container-fluid cart">
+    		<div class="row">
+				<p class="header">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					Cart
+				</p>
+			</div>
+			<div class="row">
+				<p class="section-title">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					Order positions
+				</p>
+			</div>
+			{{#if positions}}
+			<div class="row table-container">
+			<table class="table table-responsive table-striped">
+					<thead>
+						<tr>
+							<th>Lp.</th>
+							<th>Name</th>
+							<th>Amount</th>
+							<th>Total price</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						{{#each positions}}
+							{{>cartItem}}
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+			<div class="row">
+				<p class="pull-right order-sum">SUM:<span>{{sum}}</span>zł</p>
+			</div>
+			{{else}}
+				<p>There are no products in order</p>
+			{{/if}}
+			
+			<div class="row">
+				<p class="section-title">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					Delivery options
+				</p>
+			</div>
+			<div class="row deliveries">
+				{{#each deliveryOptions}}
+					<label class="radio"><input type="radio" name="delivery" value="{{_id}}" checked="{{checked}}">{{name}} 
+						<span>-{{price}}zł</span></label>
+				{{/each}}
+			</div>
+			<div class="row">
+				<p class="section-title">
+					<span class="glyphicon glyphicon-chevron-right"></span>
+					Payment options
+				</p>
+			</div>
+			<div class="row payments">
+				{{#each paymentOptions}}
+					<label class="radio"><input type="radio" name="payment" value="{{_id}}" checked="{{checked}}">{{name}}</label>
+				{{/each}}
+			</div>
+			<div class="row buttons">
+				<a href="{{pathFor 'home'}}" class="btn btn-default">
+					Back to home
+				</a>
+				<a class="btn btn-primary pull-right {{#unless positions}}disabled{{/unless}} go-to-summary">
+					Realize order
+				</a>
+			</div>
+		</div>
+    </div>
+</div>
+{{else}}
+	<p> You must be logged on </p>
+{{/if}}
+</template>
+
+
+
+<template name="cartItem">
+	<tr>
+		<td>{{index}}.</td>
+		<td><a class="product-link" href="#">{{name}}</a></td>
+		<td>
+			<div class="form-inline recount">
+				<input name="{{_id}}" type="number" class="form-control amount" value="{{amount}}" />
+				<span>x{{price}}zł</span>
+				<a class="btn btn-primary" >
+					Recount
+				</a>
+			</div>
+		</td>
+		<td>{{totalPrice}}zł</td>
+		<td>
+			<a class="btn btn-default remove-item" href="#">
+				<span class="glyphicon glyphicon-trash"></span>
+			</a>
+		</td>
+	</tr>
+</template>

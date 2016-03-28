@@ -5,6 +5,10 @@ Orders.allow({
 });
 
 getOrder = function(){
+	return Orders.findOne(getOrderId());
+}
+
+getOrderId = function(){
 	if(Meteor.userId()){
 		return Meteor.user().profile.order;
 	}else{
@@ -12,8 +16,24 @@ getOrder = function(){
 	}
 }
 
+getOrderPositions = function(){
+	return OrderPositions.find({order: getOrderId._id}).map(function(pos,index){
+			pos.index = index + 1;
+			return pos;
+		});
+}
+
+getOrderSum = function(){
+	var cursor = getOrderPositions();
+	var  sum = 0;
+	cursor.forEach(function(pos){
+		sum = sum + pos.amount * pos.price;
+	});
+	return sum;
+}
+
 addToCart = function(product){
-	var order = getOrder();
+	var order = getOrderId();
 	if(order){
 		var position = OrderPositions.findOne({
 			order: order._id, 
@@ -41,6 +61,22 @@ addToCart = function(product){
 OrderPositions = new Meteor.Collection('orderPositions');
 
 OrderPositions.allow({
+  insert: function(){ return true;},
+  update: function(){ return true;},
+  remove: function(){ return true;}
+});
+
+DeliveryOptions = new Meteor.Collection('deliveryOptions');
+
+DeliveryOptions.allow({
+  insert: function(){ return true;},
+  update: function(){ return true;},
+  remove: function(){ return true;}
+});
+
+PaymentOptions = new Meteor.Collection('paymentOptions');
+
+PaymentOptions.allow({
   insert: function(){ return true;},
   update: function(){ return true;},
   remove: function(){ return true;}

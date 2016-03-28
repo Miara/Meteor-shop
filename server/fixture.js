@@ -87,7 +87,12 @@ if(Products.find().count() === 0){
 
 
 	var orderId = Orders.insert({
-      sum: 0
+      	sum: 0,
+      	name: 'Wojciech',
+	    surname: 'Miarczyński',
+	    city: 'Poznan',
+	    address: 'Sobieskiego 7',
+	    postcode: '60-688'
     });
 	var userId = Accounts.createUser({
             username: 'admin',
@@ -95,7 +100,12 @@ if(Products.find().count() === 0){
             password: 'admin',
             profile : {
             	isAdmin: true,
-            	order: orderId
+            	order: orderId,
+            	name: 'Wojciech',
+	            surname: 'Miarczyński',
+	            city: 'Poznan',
+	            address: 'Sobieskiego 7',
+	            postcode: '60-688',
         	}
         });
 
@@ -103,7 +113,12 @@ if(Products.find().count() === 0){
 
 
 	orderId = Orders.insert({
-      sum: 0
+      	sum: 0,
+      	name: 'Wojciech',
+	    surname: 'Miarczyński',
+	    city: 'Poznan',
+	    address: 'Sobieskiego 7',
+	    postcode: '60-688'
     });
 	userId = Accounts.createUser({
             username: 'miara',
@@ -111,7 +126,12 @@ if(Products.find().count() === 0){
             password: 'miara',
             profile : {
             	isAdmin: false,
-            	order: orderId
+            	order: orderId,
+	            name: 'Wojciech',
+	            surname: 'Miarczyński',
+	            city: 'Poznan',
+	            address: 'Sobieskiego 7',
+	            postcode: '60-688'
         	}
         });
 	Orders.update(orderId,{$set: {"userId": userId}});
@@ -119,7 +139,12 @@ if(Products.find().count() === 0){
 
 
 	orderId = Orders.insert({
-      sum: 0
+      	sum: 0,
+        name: 'Olga',
+        surname: 'Sreberska',
+        city: 'Poznan',
+        address: 'Czesława 6',
+        postcode: '61-653'
     });
 	userId = Accounts.createUser({
             username: 'olga',
@@ -127,7 +152,12 @@ if(Products.find().count() === 0){
             password: 'olga',
             profile : {
             	isAdmin: false,
-            	order: orderId
+            	order: orderId,
+	            name: 'Olga',
+	            surname: 'Sreberska',
+	            city: 'Poznan',
+	            address: 'Czesława 6',
+	            postcode: '61-653'
         	}
         });
 	Orders.update(orderId,{$set: {"userId": userId}});
@@ -208,4 +238,18 @@ if(Products.find().count() === 0){
 			value: "20cm x 120cm x 40cm"
 		}]
 	});
+
+	DeliveryOptions.insert({
+		name: 'odbiór osobisty',
+		price: 0,
+		checked: true
+	});
+	DeliveryOptions.insert({
+		name: 'Szybka przesyłka',
+		price: 10
+	});
+	PaymentOptions.insert({
+		name: "Opłata przy odbiorze",
+		checked: true
+	})
 }

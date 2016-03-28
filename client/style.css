@@ -61,6 +61,19 @@ body {
   margin: 10px;
 }
 
+.default-form input{
+  margin: 5px 0 5px;
+}
+
+.default-form label{
+  margin-top: 10px;
+}
+
+
+#register-btn{
+  width: 196px;
+}
+
 .product-list .product{
   height: 200px;
   max-width: 300px;
@@ -96,7 +109,7 @@ body {
   display: block;
 }
 
-.product-item .name, .cart .name{
+.product-item .name, .cart .header, .summary .header{
   text-transform: uppercase;
   font-size: 15px;
   font-weight: bold;
@@ -105,6 +118,18 @@ body {
   padding: 10px;
   background-color: #222;
   color: #9d9d9d;
+  margin-top: 15px;
+}
+
+.cart .section-title{
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: bold;
+  border-top: 1px black solid;
+  border-bottom: 1px black solid; 
+  padding: 5px;
+  background-color: #b3b3b3;
+  color: #000000;
   margin-top: 15px;
 }
 
@@ -182,6 +207,20 @@ right: 10px;
   overflow: auto;
 }
 
+.order-sum{
+  font-weight: bold;
+  font-size: 16px;
+  margin-right: 90px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  border-bottom: 2px solid black;
+}
+
+.order-sum span{
+  font-size: 20px;
+  color: green;
+}
+
 .searchBar {
   margin-right: 10px;
 }
@@ -212,7 +251,7 @@ right: 10px;
   font-size: 11px;
   padding: 1px 4px 1px 4px;
 }
-.filters .filter-buttons a,.cart a.recount{
+.filters .filter-buttons a,.cart .recount a{
   height: 25px;
   font-size: 11px;
 }
@@ -221,9 +260,46 @@ right: 10px;
   text-align:center;
 
 }
-.cart a.recount{
+.cart .recount a{
   padding-left: 4px;
   padding-right: 4px;
+}
+
+.cart .recount span{
+  font-size: 9px;
+}
+
+.cart .deliveries span{
+  color: #777;
+  font-size: 11px;
+}
+
+.cart .deliveries, .cart .payments{
+  margin-left: 20px;
+}
+
+.cart .buttons,.summary .buttons{
+  margin-right: 10px;
+}
+
+
+
+.summary-section p:nth-child(1){
+    width:200px;
+    font-weight: bold;
+    font-size: 14px;
+    border-style:solid;
+    -webkit-border-image: 
+           -webkit-linear-gradient(left, rgba(0,0,0,1) 1%,rgba(255,255,255,1) 80%) 0 0 100% 0/0 0 2px 0 stretch;
+}
+
+.summary-section p:nth-child(2){
+  margin-left: 15px;
+}
+
+.confirm p{
+  margin-top: 20px;
+  margin-left: 20px;
 }
 
 

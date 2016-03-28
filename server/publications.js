@@ -18,6 +18,14 @@ Meteor.publish('attributes',function(){
   return Attributes.find({});
 });
 
+Meteor.publish('deliveryOptions',function(){
+  return DeliveryOptions.find({});
+});
+
+Meteor.publish('paymentOptions',function(){
+  return PaymentOptions.find({});
+});
+
 Meteor.publish('userData', function() {
   if(!this.userId) return null;
   return Meteor.users.find(this.userId, {fields: {

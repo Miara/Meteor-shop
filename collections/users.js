@@ -1,18 +1,35 @@
 Meteor.methods({
-  register: function(userData) {
-    var username = userData.username;
-    var password = userData.password;
-    var password2 = userData.password2;
+  register: function(data) {
+    var username = data.username;
+    var password = data.password;
+    var password2 = data.password2;
 
     if(username.length < 5){
-      throw new Meteor.Error(401, "Username must have at least 5 characters")
+      throw new Meteor.Error(401, "Username must have at least 5 characters");
+      return -1;
     }
     var user =  Meteor.users.find({username: username});
     // ensure the user is logged in
-    if (user == undefined)
+    if (user == undefined){
       throw new Meteor.Error(401, "This user already exists");
-    if (password != password2)
+      return -1;
+    }
+
+    if(password.length < 5){
+      throw new Meteor.Error(401, "Password must have at least 5 characters");
+      return -1;
+    }
+
+    if (password != password2){
       throw new Meteor.Error(422, 'Passwords are not the same');
+      return -1;
+    }
+
+    if(!verifyUserData(data)){
+      return -1;
+    }
+
+   
 
     var orderId = Orders.insert({
       products: [],
@@ -24,11 +41,67 @@ Meteor.methods({
       password: password,
       profile: {
         isAdmin: false,
-        order: orderId
+        order: orderId,
+        name: data.name,
+        surname: data.surname,
+        city: data.city,
+        address: data.address,
+        postcode: data.postcode
       }});
 
     Orders.update(orderId,{$set: {"userId": id}});
 
     return id;
+  },
+
+  manageAccount: function(data) {
+    
+    if(!verifyUserData(data)){
+      return -1;
+    }
+
+    Meteor.users.update(Meteor.userId(), {$set: {
+      'profile.name': data.name,
+      'profile.surname': data.surname,
+      'profile.city': data.city,
+      'profile.address': data.address,
+      'profile.postcode': data.postcode
+    }});
+
+    return true;
   }
 });
+
+verifyUserData = function(data){
+
+   if(isEmpty(data.name)){
+    throw new Meteor.Error(401, "Name cannot be empty");
+    return false;
+  }
+
+   if(isEmpty(data.surname)){
+    throw new Meteor.Error(401, "Surname cannot be empty");
+    return false;
+  }
+
+  
+
+   if(isEmpty(data.city)){
+    throw new Meteor.Error(401, "City cannot be empty");
+    return false;
+  }
+
+   if(isEmpty(data.address)){
+    throw new Meteor.Error(401, "Address cannot be empty");
+    return false;
+  }
+
+  patt = new RegExp("([0-9]{2}(-| )[0-9]{3})|[0-9]{5}");
+
+  if(isEmpty(data.postcode) || !patt.test(data.postcode)){
+    throw new Meteor.Error(401, "Postcode has to have format XX-XXX");
+    return false;
+  }
+
+  return true;
+}
