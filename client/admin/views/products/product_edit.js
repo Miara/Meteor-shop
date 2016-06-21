@@ -70,6 +70,7 @@ Template.adminProductEdit.helpers({
           attr.value = this.attributes[i].value;
           attributes.push(attr);
       }
+        console.log(attributes);
       return attributes;
     },
     unselectedAttributes: function(){
@@ -165,9 +166,9 @@ Template.adminProductAttribute.helpers({
 
 Template.adminProductAttribute.events({
   "click .remove-attribute-button" : function(){
-    console.log("test");
-    Products.update({_id : this.prodId},{
-      $pull: {attributes: {  id: this.attr._id} }})
+    var prodId = Template.parentData()._id;
+    Products.update({_id : prodId},{
+      $pull: {attributes: {  id: this._id} }})
   }
 });
 
