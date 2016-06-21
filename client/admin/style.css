@@ -13,6 +13,13 @@
 	height: 50px;
 }
 
+.admin-order{
+	height:100px;
+}
+.admin-order td{
+	   vertical-align: middle;
+}
+
 .product-form .upload-file, .product-form a{
 	margin: 5px 0 5px;
 }

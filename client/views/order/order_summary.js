@@ -30,7 +30,9 @@ Template.orderSummary.events({
 				city:   Meteor.user().profile.city,
 				address: Meteor.user().profile.address,
 				postcode: Meteor.user().profile.postcode,
-				confirmed: true
+				sum: getOrderSum(),
+				confirmed: true,
+				realized: false
 			}
 		});
 

@@ -145,7 +145,7 @@ if(Products.find().count() === 0){
         name: 'Olga',
         surname: 'Sreberska',
         city: 'Poznan',
-        address: 'Czesława 6',
+        address: 'Gornki 6',
         postcode: '61-653',
 	    confirmed: false
     });
@@ -158,7 +158,7 @@ if(Products.find().count() === 0){
 	            name: 'Olga',
 	            surname: 'Sreberska',
 	            city: 'Poznan',
-	            address: 'Czesława 6',
+	            address: 'Gornki 6',
 	            postcode: '61-653'
         	}
         });

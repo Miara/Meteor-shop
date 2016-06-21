@@ -1,0 +1,47 @@
+<template name="adminOrderList">
+	<div class="container-fluid">
+		<div class="row table-container">
+			<table class="table table-responsive">
+				<thead>
+					<tr>
+						<th>Lp.</th>
+						<th>User data</th>
+						<th>Total sum</th>
+						<th>Realized</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#each orders}}
+						{{> adminOrderItem}}
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	</div>
+</template>
+
+<template name="adminOrderItem">
+	<tr class="admin-order {{#if realized}}alert alert-success{{/if}}">
+	    <td>{{index}}</td>
+	    <td> 
+	    	{{name}} {{surname}} <br>
+	    	{{city}} {{postcode}},<br>
+	    	{{address}}
+	    </td>
+	    <td> {{sum}}zł </td>
+	    <td>
+	    	{{#if realized}}
+	    		<span class="glyphicon glyphicon-ok"></span>
+	    	{{else}}
+	    		<span class="glyphicon glyphicon-remove"></span>
+	    	{{/if}}
+	    </td>
+	    <td>
+			<a class="btn btn-default" href="{{pathFor 'adminOrderEdit'}}">
+				<span class="glyphicon glyphicon-pencil"></span>
+				Edit
+			</a>
+		</td>
+	</tr>
+</template>
