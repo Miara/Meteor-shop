@@ -2,10 +2,15 @@ Orders = new Meteor.Collection('orders');
 
 Orders.allow({
 	insert: function(){ return true;},
-  	update: function(){ return true;}
+  	update: function(){ return true;},
+  	remove: isAdmin
 });
 
-getOrder = function(){
+getOrder = function(id){
+	if(id !== undefined){
+		return Orders.findOne(id);
+	}
+
 	if(Meteor.userId()){
 		return Orders.findOne({ 
 			userId: Meteor.userId(),
@@ -25,15 +30,19 @@ getOrderId = function(){
 	}
 }
 
-getOrderPositions = function(){
-	return OrderPositions.find({order: getOrderId()}).map(function(pos,index){
+getOrderPositions = function(id){
+	var mId = getOrderId();
+	if(id !== undefined){
+		mId = id;
+	}
+	return OrderPositions.find({order: mId}).map(function(pos,index){
 			pos.index = index + 1;
 			return pos;
 		});
 }
 
-getOrderSum = function(){
-	var cursor = getOrderPositions();
+getOrderSum = function(id){
+	var cursor = getOrderPositions(id);
 	var  sum = 0;
 	cursor.forEach(function(pos){
 		sum = sum + pos.amount * pos.price;

@@ -70,4 +70,16 @@
 	margin-top: 5px;
 }
 
+.order-edit-content{
+	margin:	10px;
 
+}
+
+.order-edit-content .order-sum{
+	margin-bottom: 20px;
+}
+
+
+.admin-order-list .table{
+	overflow: hidden;
+}

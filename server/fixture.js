@@ -164,6 +164,7 @@ if(Products.find().count() === 0){
         });
 	Orders.update(orderId,{$set: {"userId": userId}});
 
+for(i=0;i<5 ; i++){
 	Products.insert({
 		name: 'Nike Long',
 		path: 'images/nike_long.jpg',
@@ -240,7 +241,7 @@ if(Products.find().count() === 0){
 			value: "20cm x 120cm x 40cm"
 		}]
 	});
-
+}
 	DeliveryOptions.insert({
 		name: 'odbiór osobisty',
 		price: 0,

@@ -1,24 +1,28 @@
 Template.adminProductEdit.onCreated(function(){
     categoryId = new ReactiveVar(false);
+    Session.set("imagePath", undefined);
 });
 
 Template.adminProductEdit.helpers({
     isImageAdded : function(){
-      
-      if(this._id === undefined){
-        //Session.set("imagePath","images/test.jpg");
-        //return true;
-          if(Session.get("imagePath") === undefined ||
-            Session.get("imagePath") === ""  ){
+       if(Session.get("imagePath") === undefined){
+          if(this._id === undefined){
+            return false;
+          }else{
+            if(this.path !== undefined && this.path !== ""){
+              Session.set("imagePath", this.path);
+              return true;
+            }else{
+              return false;
+            }
+          }
+
+       }else if(Session.get("imagePath") === ""){
           return false;
-        }else{
+       }else{
           return true;
-        }
-      }else{
-        Session.set("imagePath",this.path);
-        $('#form-product-name').val(this.name);
-        return true;
-      }
+       }
+
       
     },
     isEditedItem : function(){

@@ -14,3 +14,11 @@ Template.dropdownMenu.events({
     }
 });
 
+
+Template.dropdownMenu.helpers({
+    isAdmin : function(){
+        return isAdmin();
+    } 
+});
+
+
