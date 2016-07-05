@@ -164,7 +164,7 @@ if(Products.find().count() === 0){
         });
 	Orders.update(orderId,{$set: {"userId": userId}});
 
-for(i=0;i<5 ; i++){
+for(i=0;i<10 ; i++){
 	Products.insert({
 		name: 'Nike Long',
 		path: 'images/nike_long.jpg',

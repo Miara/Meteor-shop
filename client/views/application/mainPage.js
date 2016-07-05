@@ -4,6 +4,8 @@ sortCriteria = {};
 
 Template.mainPage.helpers({
 	products: function() {
+		console.log("TEST");
+		console.log(this);
 		_searchDeps.depend();
 		if(isEmpty(priceCriteria)){
 			priceCriteria = { $exists: true };

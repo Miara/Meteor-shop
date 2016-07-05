@@ -1,3 +1,24 @@
+Template.filters.helpers({
+	fromValue : function(){
+		return priceCriteria.$gte;
+	},
+	toValue : function(){
+		return priceCriteria.$lte;
+	},
+	isSelected : function(value){
+		if(
+			(sortCriteria.price == 1 && value == 'price-asc') ||
+			(sortCriteria.price == -1 && value == 'price-desc') ||
+			(sortCriteria.name == 1 && value == 'name-asc') ||
+			(sortCriteria.name == -1 && value == 'name-desc') ||
+			(!sortCriteria.name && !sortCriteria.price &&value == 'none')){
+			return true;
+		}else{
+			return false;
+		}
+	}
+});
+
 Template.filters.events({
 	'click .filter-buttons .apply' : function(){
 		var sortValue = $("select[name='sort']").val();
@@ -37,6 +58,3 @@ Template.filters.events({
 		_searchDeps.changed();
 	}
 });
-
-//TODO : po przeladowaniu strony wartosci dalej maja byc w formularzu
-// na enter przeladowanie formularza
