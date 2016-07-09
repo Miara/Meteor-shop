@@ -1,5 +1,5 @@
-Meteor.publish('products',function(selection,limit){
-	return Products.find(selection, {limit: limit});
+Meteor.publish('products',function(selection,other){
+	return Products.find(selection,other);
 });
 
 Meteor.publish('categories',function(){

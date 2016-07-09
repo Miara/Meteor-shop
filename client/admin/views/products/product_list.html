@@ -1,13 +1,15 @@
 <template name="adminProductList">
-	<div class="container-fluid">
+	<div class="container-fluid admin-product-list">
 		<div class="row add-item">
 			<div class="col-sm-12">
-				<a href="{{pathFor 'adminProductNew'}}" class="btn btn-default pull-right">
+				<a href="{{pathFor 'adminProductNew'}}" class="btn btn-default pull-right new-prod">
 					<span class="glyphicon glyphicon-plus" style="color:green;"> </span>
 					Add product
 				</a>
+				{{> searchBar}}
 			</div>
 		</div>
+		{{> filters}}
 
 		<div class="row table-container">
 			<table class="table table-responsive table-striped">
@@ -26,6 +28,10 @@
 				</tbody>
 			</table>
 		</div>
+		{{#if nextPath}}
+            <a class="load-more" href="{{nextPath}}" >Load more</a>
+        {{/if}}
+
 	</div>
 </template>
 

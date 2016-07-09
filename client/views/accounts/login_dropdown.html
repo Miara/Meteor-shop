@@ -3,7 +3,7 @@
 		{{#if currentUser}}
 		<div class="col-sm-12">
 			{{#if isAdmin}}
-				<a href="{{pathFor 'admin'}}" class="btn btn-primary col-sm-12">Admin panel</a>
+				<a href="{{pathFor 'adminProductList'}}" class="btn btn-primary col-sm-12">Admin panel</a>
 			{{/if}}
 			<a  href="{{pathFor 'manageAccount'}}" class="btn btn-primary col-sm-12">Manage account</a>
 			<a  onclick="Meteor.logout();" class="btn btn-primary col-sm-12">Log out</a>
