@@ -242,6 +242,14 @@ for(i=0;i<10 ; i++){
 		}]
 	});
 }
+
+	Settings.insert({
+		email: 'sklep.magisterka@gmail.com',
+		password: 'm@g1st3rk@',
+		smtp: 'smtp.gmail.com',
+		port: 465
+	});
+	
 	DeliveryOptions.insert({
 		name: 'odbiór osobisty',
 		price: 0,

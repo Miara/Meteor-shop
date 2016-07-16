@@ -20,6 +20,14 @@ Template.orderSummary.helpers({
 
 });
 
+Template.confirm.rendered = function(){
+  isOrderConfirmed = false;
+};
+
+Template.orderSummary.rendered = function(){
+  isOrderConfirmed = false;
+};
+
 Template.orderSummary.events({
 	'click .confirm' : function(event){
 		event.preventDefault();
@@ -41,6 +49,8 @@ Template.orderSummary.events({
 	      	userId: Meteor.userId(),
 	      	confirmed: false
 	    });
+
+	    isOrderConfirmed = true;
 
 		Router.go('confirm',{});
 		

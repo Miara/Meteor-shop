@@ -1,6 +1,15 @@
 Meteor.startup(function () {
 
-  process.env.MAIL_URL="smtp://sklep.magisterka%40gmail.com:m%40g1st3rk%40@smtp.gmail.com:465/";
+  var settings = Settings.findOne();
+
+  if (isEmpty(settings)){
+    process.env.MAIL_URL="smtp://sklep.magisterka%40gmail.com:m%40g1st3rk%40@smtp.gmail.com:465/";
+  }else{
+    process.env.MAIL_URL = "smtp://" + settings.email + ":" +settings.password + "@" +
+      settings.smtp + ":" + settings.port + "/";
+  }
+  console.log(process.env.MAIL_URL);
+  
 
   UploadServer.init({
     tmpDir: process.env.PWD + '/public/tmp/',
@@ -28,7 +37,7 @@ Meteor.methods({
 
 
 Meteor.methods({
-  sendEmail: function (to, from, subject, text) {
+  sendEmail: function (to, subject, text) {
     //check([to, from, subject, text], [String]);
 
     // Let other method calls from the same client start running,
@@ -37,7 +46,6 @@ Meteor.methods({
 
     Email.send({
       to: to,
-      from: from,
       subject: subject,
       text: text
     });

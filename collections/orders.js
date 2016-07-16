@@ -6,6 +6,9 @@ Orders.allow({
   	remove: isAdmin
 });
 
+
+isOrderConfirmed = false;
+
 getOrder = function(id){
 	if(id !== undefined){
 		return Orders.findOne(id);

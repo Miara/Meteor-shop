@@ -26,6 +26,10 @@ Meteor.publish('paymentOptions',function(){
   return PaymentOptions.find({});
 });
 
+Meteor.publish('settings',function(){
+  return Settings.find({});
+});
+
 Meteor.publish('userData', function() {
   if(!this.userId) return null;
   return Meteor.users.find(this.userId, {fields: {

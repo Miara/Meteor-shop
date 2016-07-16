@@ -13,3 +13,5 @@ $('.pull-down').each(function() {
 function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
+
+isOrderConfirmed = false;
