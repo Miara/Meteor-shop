@@ -52,6 +52,11 @@ Template.orderSummary.events({
 
 	    isOrderConfirmed = true;
 
+	    Meteor.call('sendEmail',
+	    	Meteor.user().emails[0].address, 
+	    	'Confirmation with order ' + getOrder()._id ,
+	    	'Your order was accepted, Thank you for buying in our shop.');
+
 		Router.go('confirm',{});
 		
 	}

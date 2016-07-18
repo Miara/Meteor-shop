@@ -323,31 +323,3 @@ input::-webkit-inner-spin-button {
     text-decoration: none;
     background: rgba(0, 0, 0, 0.1);
 }
-
-#payment-delivery-new-name{
-    width: 150px;
-
-}
-
-#payment-delivery-new-price{
-    width: 60px;
-}
-
-.payment-delivery.name-value{
-    width: 150px !important;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-}
-
-.payment-delivery.price-value{
-    width: 60px !important;
-    white-space: nowrap;
-}
-
-.payment-delivery.price-value .close{
-  display: inline;
-}
-.payment-delivery-form .payment-delivery{
-  display:inline ;
-}

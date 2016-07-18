@@ -54,9 +54,9 @@
         <h4> Payments </h4>
     </div>
 	<div class="panel-body">
-		{{> paymentOrDeliveryAddTemplate}}
+		{{> paymentOrDeliveryAddTemplate payment=true}}
 		{{#each payments}}
-			{{> paymentOrDeliveryRowTemplate name=name price=price payment=true}}
+			{{> paymentOrDeliveryRowTemplate _id=_id name=name price=price payment=true}}
 		{{/each}}
 	</div>
 </div>
@@ -68,7 +68,7 @@
 	<div class="panel-body">
 		{{> paymentOrDeliveryAddTemplate}}
 		{{#each deliveries}}
-			{{> paymentOrDeliveryRowTemplate name=name price=price payment=false}}
+			{{> paymentOrDeliveryRowTemplate _id=_id name=name price=price}}
 		{{/each}}
 	</div>
 </div>
@@ -78,16 +78,22 @@
 <template name="paymentOrDeliveryRowTemplate">
 	<div class="row">
 			<div class="col-sm-4"></div>
-            <div class="col-sm-5 payment-delivery name-value">
-		        {{name}}
-		    </div>
-		    <div class="col-sm-2 payment-delivery price-value">  
-		    	{{#if price}}    
-		        	<div>{{price}}zł</div> 
-		        {{else}}
-		        	-     
-		        {{/if}} 
-		    </div>
+			{{#if payment}}
+				<div class="col-sm-7 payment name-value">
+			        {{name}}
+			    </div>
+			{{else}}
+				<div class="col-sm-5 delivery name-value">
+			        {{name}}
+			    </div>
+			    <div class="col-sm-2 delivery price-value">  
+			    	{{#if price}}    
+			        	<div>{{price}}zł</div> 
+			        {{else}}
+			        	-     
+			        {{/if}} 
+			    </div>
+			{{/if}}
 		    <div class="col-sm-1">
 		    	<button type="button" class="close">&times;</button>
 		    </div>
@@ -101,8 +107,13 @@
 	        <label class="pull-right"> Add new: </label>
 	    </div>
 	    <div class="col-sm-8">
-	        <input id="payment-delivery-new-name" type="text" placeholder="Name" class="form-control form-control-inline ">
-	        <input id="payment-delivery-new-price" type="number" placeholder="Price" class="form-control form-control-inline ">
+	    	{{#if payment}}
+	    		<input id="payment-new-name" type="text" placeholder="Name" class="form-control form-control-inline ">
+	    	{{else}}
+	    		<input id="delivery-new-name" type="text" placeholder="Name" class="form-control form-control-inline ">
+	        	<input id="delivery-new-price" type="number" placeholder="Price" class="form-control form-control-inline ">
+	    	{{/if}}
+	        
 	        <a href="#" class="btn btn-default add-value-button">
 	                <span class="glyphicon glyphicon-plus" style="color:green;"> </span>
 	        </a>

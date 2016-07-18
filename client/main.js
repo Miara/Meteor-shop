@@ -14,4 +14,12 @@ function isNumber(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+function getNumber(n){
+	if(isNaN(parseFloat(n)) && isFinite(n)){
+		return 0;
+	}else{
+		return parseFloat(n);
+	}
+}
+
 isOrderConfirmed = false;

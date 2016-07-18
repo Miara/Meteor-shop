@@ -98,3 +98,37 @@
 .admin-order-list .table{
 	overflow: hidden;
 }
+
+
+
+#payment-new-name{
+    width: 210px;
+}
+
+#delivery-new-name{
+    width: 150px;
+}
+
+#delivery-new-price{
+    width: 60px;
+}
+
+.delivery.name-value, .payment.name-value{
+    width: 150px !important;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.payment.name-value{
+	width: 210px !important;
+}
+
+.delivery.price-value{
+    width: 60px !important;
+    white-space: nowrap;
+}
+
+.payment-delivery.price-value .close, 
+.payment-delivery-form .payment-delivery{
+  display: inline;
+}
