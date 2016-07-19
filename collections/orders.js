@@ -1,8 +1,7 @@
 Orders = new Meteor.Collection('orders');
 
 Orders.allow({
-	insert: function(){ return true;},
-  	update: function(){ return true;},
+  	update: function(){return true;},
   	remove: isAdmin
 });
 
@@ -92,15 +91,47 @@ OrderPositions.allow({
 DeliveryOptions = new Meteor.Collection('deliveryOptions');
 
 DeliveryOptions.allow({
-  insert: function(){ return true;},
-  update: function(){ return true;},
-  remove: function(){ return true;}
+  insert: isAdmin,
+  remove: isAdmin
 });
 
 PaymentOptions = new Meteor.Collection('paymentOptions');
 
 PaymentOptions.allow({
-  insert: function(){ return true;},
-  update: function(){ return true;},
-  remove: function(){ return true;}
+  insert: isAdmin,
+  remove: isAdmin
+});
+
+
+
+Meteor.methods({
+  confirmOrder: function(data) {
+    
+    Orders.update(getOrder()._id, {
+			$set: {
+				email: 	Meteor.user().profile.email,
+				name: 	Meteor.user().profile.name,
+				surname: Meteor.user().profile.surname,
+				city:   Meteor.user().profile.city,
+				address: Meteor.user().profile.address,
+				postcode: Meteor.user().profile.postcode,
+				sum: getOrderSum(),
+				confirmed: true,
+				realized: false
+			}
+		});
+
+		var orderId = Orders.insert({
+	      	sum: 0,
+	      	userId: Meteor.userId(),
+	      	confirmed: false
+	    });
+
+	    Meteor.call('sendEmail',
+	    	Meteor.user().profile.email, 
+	    	'Confirmation with order ' + getOrder()._id ,
+	    	'Your order was accepted, Thank you for buying in our shop.');
+
+    return true;
+  }
 });

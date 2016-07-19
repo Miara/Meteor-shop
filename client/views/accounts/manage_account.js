@@ -6,6 +6,7 @@ Template.manageAccount.events({
         data.username= $('#register-username').val();
         data.password= $('#register-password').val();
         data.password2= $('#register-password2').val();
+        data.email= $('#register-email').val();
         data.name= $('#register-name').val();
         data.surname= $('#register-surname').val();
         data.city= $('#register-city').val();
@@ -30,6 +31,7 @@ Template.manageAccount.events({
 
         //TODO : walidacja po stronie klienta
         var data = {};
+        data.email= $('#register-email').val();
         data.name= $('#register-name').val();
         data.surname= $('#register-surname').val();
         data.city= $('#register-city').val();

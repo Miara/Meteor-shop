@@ -26,6 +26,7 @@ Template.adminOrderEdit.events({
 	'click .order-apply-button': function(event){
 		Orders.update({_id: this._id},{$set: 
 			{
+				email: $('#form-attribute-email').val(),
 				name: $('#form-attribute-name').val(),
 				surname: $('#form-attribute-surname').val(),
 				city: $('#form-attribute-city').val(),

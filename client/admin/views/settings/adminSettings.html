@@ -4,7 +4,7 @@
         <h4> Email settings </h4>
     </div>
 	<div class="panel-body settings">
-
+		{{> errors}}
         <div class="row">
             <div class="col-sm-4">
                 <label class="pull-right">Email:</label>
@@ -94,9 +94,11 @@
 			        {{/if}} 
 			    </div>
 			{{/if}}
-		    <div class="col-sm-1">
-		    	<button type="button" class="close">&times;</button>
-		    </div>
+			{{#if displayCloseBtn}}
+			    <div class="col-sm-1">
+			    	<button type="button" class="close">&times;</button>
+			    </div>
+		    {{/if}}
 		    
     </div>
 </template>

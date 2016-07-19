@@ -31,31 +31,8 @@ Template.orderSummary.rendered = function(){
 Template.orderSummary.events({
 	'click .confirm' : function(event){
 		event.preventDefault();
-		Orders.update(getOrder()._id, {
-			$set: {
-				name: 	Meteor.user().profile.name,
-				surname: Meteor.user().profile.surname,
-				city:   Meteor.user().profile.city,
-				address: Meteor.user().profile.address,
-				postcode: Meteor.user().profile.postcode,
-				sum: getOrderSum(),
-				confirmed: true,
-				realized: false
-			}
-		});
-
-		var orderId = Orders.insert({
-	      	sum: 0,
-	      	userId: Meteor.userId(),
-	      	confirmed: false
-	    });
-
+		Meteor.call('confirmOrder');
 	    isOrderConfirmed = true;
-
-	    Meteor.call('sendEmail',
-	    	Meteor.user().emails[0].address, 
-	    	'Confirmation with order ' + getOrder()._id ,
-	    	'Your order was accepted, Thank you for buying in our shop.');
 
 		Router.go('confirm',{});
 		

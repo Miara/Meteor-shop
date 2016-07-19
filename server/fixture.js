@@ -88,6 +88,7 @@ if(Products.find().count() === 0){
 
 	var orderId = Orders.insert({
       	sum: 0,
+      	email: 'wojciech.miarczynski@gmail.com',
       	name: 'Wojciech',
 	    surname: 'Miarczyński',
 	    city: 'Poznan',
@@ -101,6 +102,7 @@ if(Products.find().count() === 0){
             password: 'admin',
             profile : {
             	isAdmin: true,
+            	email: 'wojciech.miarczynski@gmail.com',
             	name: 'Wojciech',
 	            surname: 'Miarczyński',
 	            city: 'Poznan',
@@ -114,55 +116,7 @@ if(Products.find().count() === 0){
 	console.log("ORDER ID: "+ orderId);
 
 
-	orderId = Orders.insert({
-      	sum: 0,
-      	name: 'Wojciech',
-	    surname: 'Miarczyński',
-	    city: 'Poznan',
-	    address: 'Sobieskiego 7',
-	    postcode: '60-688',
-	    confirmed: false
-    });
-	userId = Accounts.createUser({
-            username: 'miara',
-            email: 'miara@shop.com',
-            password: 'miara',
-            profile : {
-            	isAdmin: false,
-	            name: 'Wojciech',
-	            surname: 'Miarczyński',
-	            city: 'Poznan',
-	            address: 'Sobieskiego 7',
-	            postcode: '60-688'
-        	}
-        });
-	Orders.update(orderId,{$set: {"userId": userId}});
 
-
-
-	orderId = Orders.insert({
-      	sum: 0,
-        name: 'Olga',
-        surname: 'Sreberska',
-        city: 'Poznan',
-        address: 'Gornki 6',
-        postcode: '61-653',
-	    confirmed: false
-    });
-	userId = Accounts.createUser({
-            username: 'olga',
-            email: 'olga@shop.com',
-            password: 'olga',
-            profile : {
-            	isAdmin: false,
-	            name: 'Olga',
-	            surname: 'Sreberska',
-	            city: 'Poznan',
-	            address: 'Gornki 6',
-	            postcode: '61-653'
-        	}
-        });
-	Orders.update(orderId,{$set: {"userId": userId}});
 
 for(i=0;i<10 ; i++){
 	Products.insert({

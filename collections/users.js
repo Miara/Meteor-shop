@@ -29,16 +29,13 @@ Meteor.methods({
       return -1;
     }
 
-   
-
-
-
     var id = Accounts.createUser({
       username: username, 
       password: password,
       profile: {
         isAdmin: false,
         order: orderId,
+        email: data.email,
         name: data.name,
         surname: data.surname,
         city: data.city,
@@ -64,6 +61,7 @@ Meteor.methods({
 
     Meteor.users.update(Meteor.userId(), {$set: {
       'profile.name': data.name,
+      'profile.email': data.email,
       'profile.surname': data.surname,
       'profile.city': data.city,
       'profile.address': data.address,
@@ -75,6 +73,15 @@ Meteor.methods({
 });
 
 verifyUserData = function(data){
+
+  console.log(data.email);
+
+  var patt = /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/;
+
+   if(isEmpty(data.email) || !patt.test(data.email)){
+    throw new Meteor.Error(401, "Incorrect format of email");
+    return false;
+  }
 
    if(isEmpty(data.name)){
     throw new Meteor.Error(401, "Name cannot be empty");
