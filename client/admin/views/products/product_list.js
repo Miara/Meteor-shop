@@ -16,6 +16,16 @@ Template.adminProductList.helpers({
   }
 });
 
+Template.adminProductItem.helpers({
+	imagePath: function(){
+	  var pathname = this.path;
+      if (pathname.substring(0, 4) != "http") {
+          pathname = "/" + pathname;
+      }
+      return  pathname;
+	}
+});
+
 Template.adminProductList.rendered = function(){
 	height = $('#main').height();
 	if($('.sidebar nav').height() < height){

@@ -1,9 +1,13 @@
 Template.adminProductEdit.onCreated(function(){
     categoryId = new ReactiveVar(false);
+    this.currentUpload = new ReactiveVar(false);
     Session.set("imagePath", undefined);
 });
 
 Template.adminProductEdit.helpers({
+    currentUpload: function () {
+      return Template.instance().currentUpload.get();
+    },
     isImageAdded : function(){
        if(Session.get("imagePath") === undefined){
           if(this._id === undefined){
@@ -33,7 +37,11 @@ Template.adminProductEdit.helpers({
       }
     },
     imagePath : function(){
-      return  Session.get("imagePath");
+      var pathname = Session.get("imagePath");
+      if (pathname.substring(0, 4) != "http") {
+          pathname = "/" + pathname;
+      }
+      return  pathname;
     },
   	fileUploadedCallback: function() {
       return {
@@ -148,6 +156,33 @@ Template.adminProductEdit.events({
     var data = {id: attrId, value: ""}
     Products.update({ _id: this._id },{ $push: { attributes: data }});
     //TODO :DLA WSZYSTKICH KATEGORII PDORZĘDNYCH TEŻ
+  },
+  'change #fileInput': function (e, template) {
+    if (e.currentTarget.files && e.currentTarget.files[0]) {
+      // We upload only one file, in case 
+      // multiple files were selected
+      var upload = Images.insert({
+        file: e.currentTarget.files[0],
+        streams: 'dynamic',
+        chunkSize: 'dynamic'
+      }, false);
+
+      upload.on('start', function () {
+        template.currentUpload.set(this);
+      });
+
+      upload.on('end', function (error, fileObj) {
+        if (error) {
+          throwError('Error during upload: ' + error);
+        } else {
+          Session.set("imagePath", Images.findOne(fileObj._id).link());
+          console.log(Images.findOne(fileObj._id).link());
+        }
+        template.currentUpload.set(false);
+      });
+
+      upload.start();
+    }
   }
 });
 

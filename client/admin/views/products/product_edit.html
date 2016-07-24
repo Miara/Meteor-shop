@@ -16,13 +16,19 @@
 		            	<label class="pull-right">Image:</label>
 		            </div>
 		            <div class="col-sm-8 vcenter">
+		            
 				{{#if isImageAdded}}
 						<div style="width: 200px; height:100px;">
-							<img src="/{{imagePath}}" style=" width: 200px; height:100px; position:absolute;"/>
+							<img src="{{imagePath}}" style=" width: 200px; height:100px; position:absolute;"/>
 							<button type="button" class="close close-product-image">&times;</button>
 						</div>
 				{{else}}
-						{{> upload_bootstrap contentType='images' fileTypes='.jpg' callbacks=fileUploadedCallback}}
+						{{#with currentUpload}}
+					    	Uploading <b>{{file.name}}</b>: 
+					    	<span id="progress btn btn-default">{{progress.get}}%</span>
+						{{else}}
+						    <input id="fileInput" type="file" />
+						{{/with}}
 				{{/if}}
 					</div>
 				</div>

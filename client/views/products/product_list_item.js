@@ -1,11 +1,10 @@
 Template.productListItem.helpers({
 	itemPath: function() {
-		return "/" + this.path;
-      /*if( Router.current().route.getName() == "category"){
-      	return "/" + this.path;
-      }else{
-      	return this.path;
-      }*/
+	  var pathname = this.path;
+      if (pathname.substring(0, 4) != "http") {
+          pathname = "/" + pathname;
+      }
+      return pathname;
   	}
 });
 

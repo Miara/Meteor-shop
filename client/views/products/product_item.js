@@ -1,10 +1,10 @@
 Template.productItem.helpers({
 	itemPath: function() {
-      if( Router.current().route.getName() == "category"){
-      	return "../" + this.path;
-      }else{
-      	return this.path;
+      var pathname = Session.get("imagePath");
+      if (pathname.substring(0, 4) != "http") {
+          pathname = "/" + pathname;
       }
+      return pathname;
   	}
 });
 
